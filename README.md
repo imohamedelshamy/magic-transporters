@@ -1,73 +1,202 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Magic Transporters
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Magic Transporters Logo](https://unifi.solutions/img/logo.70ad26f1.webp)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table of Contents
 
-## Description
+1. [Project Overview](#project-overview)
+2. [Architecture](#architecture)
+3. [.env Configuration](#env-configuration)
+4. [Setup and Installation](#setup-and-installation)
+5. [Running the Project](#running-the-project)
+6. [Business Functionality](#business-functionality)
+7. [Logging and Monitoring](#logging-and-monitoring)
+8. [API Documentation](#api-documentation)
+9. [Conclusion](#conclusion)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Project Overview
 
-## Installation
+Magic Transporters is an application designed to manage magical movers and items. The application includes functionalities for creating, updating, and managing movers and items, and provides a robust logging system for monitoring activities.
 
-```bash
-$ npm install
+## Architecture
+
+The architecture of the Magic Transporters project is structured as follows:
+
+- **NestJS**: A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
+- **PostgreSQL**: An advanced, enterprise-class, and open-source relational database system.
+- **TypeORM**: An ORM for TypeScript and JavaScript (ES7, ES6, ES5), supporting multiple database systems.
+
+### Code Quality and Best Practices
+
+#### Dependency Injection:
+
+Used throughout the application to reduce coupling and enhance modularity.
+
+#### Service-Oriented Architecture:
+
+Ensures each service is focused on a specific functionality.
+
+#### Comprehensive Logging:
+
+Provides detailed insights into the application's operations and issues.
+
+#### Modular Design:
+
+Facilitates easier maintenance and scalability.
+
+## Directory Structure
+
+```
+src/
+├── common/
+│ └── logging/
+│ └── logger.service.ts
+├── database/
+│ └── database.module.ts
+├── models/
+│ ├── magic-items/
+│ │ ├── dtos/
+│ │ │ └── create-magic-item.dto.ts
+│ │ ├── magic-item.entity.ts
+│ │ ├── magic-item.module.ts
+│ │ ├── magic-item.service.ts
+│ │ └── repositories/
+│ │ └── typeorm-magic-item.repository.ts
+│ ├── magic-movers/
+│ │ ├── dtos/
+│ │ │ └── create-magic-mover.dto.ts
+│ │ ├── enums/
+│ │ │ └── quest-state.enum.ts
+│ │ ├── magic-mover.entity.ts
+│ │ ├── magic-mover.module.ts
+│ │ ├── magic-mover.service.ts
+│ │ └── repositories/
+│ │ └── typeorm-magic-mover.repository.ts
+│ └── missions/
+│ ├── dtos/
+│ │ └── create-mission.dto.ts
+│ ├── mission.entity.ts
+│ ├── mission.module.ts
+│ └── mission.service.ts
+├── app.module.ts
+└── main.ts
 ```
 
-## Running the app
+## Setup and Installation
+
+To get started with the project, follow these steps:
+
+### Prerequisites
+
+- Node.js (>= 14.x)
+- PostgreSQL
+- Docker
+
+### Installation
+
+1. **Clone the repository:**
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/imohamedelshamy/magic-transporters
+cd magic-transporters
 ```
 
-## Test
+### Configure environment variables:
+
+Create a .env file in the root directory and add the necessary environment variables (see .env.example).
 
 ```bash
-# unit tests
-$ npm run test
+PORT=3000
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=your_db_user
+DATABASE_PASSWORD=your_db_password
+DATABASE_NAME=magic_transporters
 ```
 
-## Support
+### Install dependencies:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm install
+```
 
-## Stay in touch
+### Set up the database:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Ensure PostgreSQL is running and create the required database.
 
-## License
+Create a .env file in the root directory with the following variables:
 
-Nest is [MIT licensed](LICENSE).
+## Run the database migrations
+
+```bash
+npm run migration:run
+```
+
+### Running the Project
+
+To run the project in development mode:
+
+```bash
+npm run start:dev
+```
+
+### Using Docker
+
+To run the application using Docker, follow these steps:
+
+Build the Docker image:
+
+```bash
+docker build -t magic-transporters .
+Run the Docker container:
+
+docker run --env-file .env -p 3000:3000 magic-transporters
+```
+
+## Business Functionality
+
+The Magic Transporters application provides the following business functionalities:
+
+### Movers Management
+
+Create Magic Mover: Create new magical movers with attributes like name, weight limit, energy capacity, etc.
+
+Update Magic Mover: Update existing movers' details.
+
+Manage Energy: Monitor and update movers' energy levels.
+
+### Items Management
+
+Create Magic Item: Create new magical items with attributes like name, weight, and energy requirements.
+
+hint: i related item energy to its weight to achieve more real functionality.
+
+### Missions Management
+
+Create Missions: Define missions for movers.
+
+Assign Movers to Missions: Assign available movers to specific missions based on their current state.
+
+## Logging and Monitoring
+
+The application uses Winston with colorize and details info for logging. Logs are output to the console and stored in application.log to store the logs.
+
+### Log example
+
+```bash
+this.logService.log(
+  `Magic Item ${magicItem.name} created with weight ${magicItem.weight} and energy takes ${magicItem.energyTakes}`
+);
+```
+
+response example from the application.log file
+![alt text](image.png)
+
+## API Documentation
+
+The controllers and DTOs are documented using @nestjs/swagger. To access the Swagger UI, start the application and navigate to http://localhost:3000/api.
+
+## Conclusion
+
+Magic Transporters is designed to efficiently manage magical movers and items with robust logging and monitoring capabilities. By following best practices such as dependency injection and modular design, the application ensures maintainability and scalability.
