@@ -22,7 +22,7 @@ export class TypeOrmMagicMoverRepository implements IMagicMoverRepository {
   }
 
   async findAll(): Promise<MagicMover[]> {
-    return this.repository.find({ relations: ['items', 'missions'] });
+    return this.repository.find({ relations: ['missions'] });
   }
 
   async findById(id: number): Promise<MagicMover> {
