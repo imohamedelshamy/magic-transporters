@@ -178,6 +178,10 @@ Create Missions: Define missions for movers.
 
 Assign Movers to Missions: Assign available movers to specific missions based on their current state.
 
+Get Magic Movers sorted by number of completed task. And response will be like
+
+![alt text](image-1.png)
+
 ## Logging and Monitoring
 
 The application uses Winston with colorize and details info for logging. Logs are output to the console and stored in application.log to store the logs.
