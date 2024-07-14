@@ -5,4 +5,5 @@ export interface MissionRepository {
   create(mission: CreateMissionDto): Promise<Mission>;
   findAll(): Promise<Mission[]>;
   findById(id: number): Promise<Mission>;
+  sortByMover(): Promise<any>;
 }

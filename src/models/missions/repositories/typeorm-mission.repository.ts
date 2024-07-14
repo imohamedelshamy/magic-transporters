@@ -25,4 +25,16 @@ export class TypeOrmMissionRepository implements MissionRepository {
   async findById(id: number): Promise<Mission> {
     return this.repository.findOne({ where: { id }, relations: ['mover'] });
   }
+
+  async sortByMover() {
+    const result = await this.repository
+      .createQueryBuilder('mission')
+      .select('mission.moverId', 'moverId')
+      .addSelect('COUNT(mission.id)', 'missions_count')
+      .groupBy('mission.moverId')
+      .orderBy('missions_count', 'DESC')
+      .getRawMany();
+
+    return result;
+  }
 }

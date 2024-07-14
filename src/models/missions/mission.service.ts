@@ -21,4 +21,8 @@ export class MissionService {
   async findById(id: number): Promise<Mission> {
     return this.missionRepository.findById(id);
   }
+
+  async sortByMover() {
+    return this.missionRepository.sortByMover();
+  }
 }
